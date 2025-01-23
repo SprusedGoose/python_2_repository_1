@@ -9,7 +9,7 @@ class SlideNode:
         self.next = None
 
 class CircularLinkedList:
-    """Circular Linked List class that stores slides in a circular linked list and supports randomizing slides"""
+    """Circular Linked List class that stores the slides in a circular linked list and supports randomizing slides"""
     def __init__(self):
         self.head = None
 
