@@ -2,7 +2,6 @@
 # Circular Linked List For Students
 
 
-
 class SlideNode:
     """"Slide Node class that stores slide_id and next slide"""
     def __init__(self, slide_id):
