@@ -69,4 +69,3 @@ def simulate_sign_viewing(num_slides=20, display_time=20, view_duration=60, stud
 percentage, slides_seen = simulate_sign_viewing(randomize=True)
 print(f"Percentage of slides seen: {percentage:.2f}%")
 print(f"Slides seen: {sorted(slides_seen)}")
-
