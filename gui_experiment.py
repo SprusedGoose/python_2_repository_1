@@ -10,11 +10,13 @@ from utilities import path
 
 window = tk.CTk()
 
+window.resizable(width=False, height=False)
+
 frames = [
     # takes the file path of the gif and gives an index within the PhotoImage
-    PhotoImage(file=path("thing.gif"), format="gif -index %i" % (i))
+    PhotoImage(file=path("wiz2.gif"), format="gif -index %i" % (i))
     # runs through the 60 frames of the image, making the animation work
-    for i in range(60)
+    for i in range(182)
 ]
 
 
@@ -58,12 +60,12 @@ def update(ind):
     ind += 1
     # With this condition it will play gif infinitely
     # if the framerate is greater than 59, the frame is set back to 0
-    if ind > 59:
+    if ind > 181:
         ind = 0
         # configures the image for the current frame
-    label.configure(image=frame)
+    label.configure(image=frame, text="")
     # after the duration of update speed, the frame changes
-    window.after(40, update, ind)
+    window.after(60, update, ind)
 
 
 # starts the animation
