@@ -1,5 +1,5 @@
 import random
-from sqedual import daily_sqedual
+from schedule import daily_schedule  # Assuming this is the correct import
 
 day_start = 9
 day_end = 14
@@ -10,44 +10,57 @@ enrolled_students = 2132
 class Student:
     def __init__(self):
 
-        self.seen_slides = {}
+        self.seen_slides = []
         
-        self.lives_in_dorm = (random.randint(0,enrolled_students) < dorm_residents)
-        self.sqedual = [daily_sqedual(0, 0)] * 7
+        self.lives_in_dorm = (random.randint(0, enrolled_students) < dorm_residents)
+        self.schedule = [daily_schedule(0, 0)] * 7
 
-        # exstend dorm resident schedaul
+        # Extend dorm resident schedule
 
-        # sign turns off at 10
+        # Sign turns off at 10
         
-        #Genarate sqedual for dorm residents
+        # Generate schedule for dorm residents
         if self.lives_in_dorm == True:
-            for x in range(1,6):
-                minminimum_day_length = 1
-                arival_time = random.randint(day_start, day_end - minminimum_day_length)
-                departure_time = random.randint(arival_time + minminimum_day_length, day_end)
+            for x in range(1, 6):
+                minimum_day_length = 1
+                arrival_time = random.randint(day_start, day_end - minimum_day_length)
+                departure_time = random.randint(arrival_time + minimum_day_length, day_end)
                 
-                self.sqedual[x] = daily_sqedual(arival_time, departure_time)
+                self.schedule[x] = daily_schedule(arrival_time, departure_time)
 
-        #Genarate sqedual for non dorm residents
+        # Generate schedule for non-dorm residents
         else:
-            for x in range(0,7):
-                if random.randint(0,2) == 1:
-                    minminimum_day_length = 1
-                    arival_time = random.randint(day_start, day_end - minminimum_day_length)
-                    departure_time = random.randint(arival_time + minminimum_day_length, day_end)
+            for x in range(0, 7):
+                if random.randint(0, 2) == 1:
+                    minimum_day_length = 1
+                    arrival_time = random.randint(day_start, day_end - minimum_day_length)
+                    departure_time = random.randint(arrival_time + minimum_day_length, day_end)
                     
-                    self.sqedual[x] = daily_sqedual(arival_time, departure_time)
-
-    
-    def say_hello(self):
-        pass 
-
-    def check_slide_visabilty(self, slide: SlideNode):
-        pass
+                    self.schedule[x] = daily_schedule(arrival_time, departure_time)
 
 
+    # this method adds slides scene advents to slides scene list
+    def view_slide(self, slide: SlideNode, duration):
+        self.seen_slides.append([SlideNode, duration])
+
+    def check_if_slide_student(self, slide: SlideNode, time_range, day):
+        if self.schedule[day] in range[time_range]:
+            
+            duration = time_range[1] - self.schedule[day] 
+            
+            self.view_slide(SlideNode, duration)
 
 if __name__ == "__main__":
     test_student = Student()
 
-    print(test_student.sqedual)
+    print(test_student.schedule)
+
+
+
+nominal_sign_viewing_time = 60
+nominal_speed = 25
+actual_speed = 20
+
+division_from_nominal_speed_factor = actual_speed / nominal_speed
+
+actual_sign_viewing_time = nominal_sign_viewing_time / division_from_nominal_speed_factor
