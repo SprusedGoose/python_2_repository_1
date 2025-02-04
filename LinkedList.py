@@ -14,8 +14,8 @@ class CircularLinkedList:
 
     def iterate(self):
         current = current.next
-
-
+    
+    
     def nodes(self):
         nodes = []
         current = self.head
@@ -45,9 +45,10 @@ def create_slides(number):
     for i in range(1, number+1):
         slides.append(i)
     return slides
-    
-slide_list = create_slides(20)
-print(slide_list.nodes())
+
+if __name__ == "__main__": 
+    slide_list = create_slides(20)
+    print(slide_list.nodes())
 
 
 
