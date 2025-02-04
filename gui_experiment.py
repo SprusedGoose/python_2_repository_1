@@ -7,7 +7,6 @@ from tkinter import PhotoImage
 from customtkinter import CTkLabel
 from utilities import path
 
-
 class Gui(tk.CTk):
     def __init__(self):
         super().__init__()
@@ -174,10 +173,24 @@ class Gui(tk.CTk):
     # a function that is supposed to run a simulation
     def run_sample(self):
         """
-        same goes for this one
+        same goes for this function
 
         """
+        self.values = {
+            "speed_bump_quantity": self.speed_bump_slider.get(),
+            "speed_bump_height": self.speed_bump_height.get(),
+            "slide_duration": self.slide_duration.get(),
+            "slide_count": self.slide_count.get(),
+            "speed_bump_spacing": self.speed_bump_distance.get(),
+            "viewing_distance": self.viewing_distance.get(),
+            "school_start": self.school_start.get(),
+            "school_end": self.school_end.get(),
+            "total_students": self.total_students.get(),
+            "dorm_students": self.dorm_students.get(),
+            "speed_excess": self.speeding_drivers()
+        }
         pass
+
 
     # starts the animation
         self.after(0, self.update, 0)
@@ -203,7 +216,9 @@ class Gui(tk.CTk):
         slide_quantity.grid(row=3, column=1)
 
 
-window = Gui()
-window.after(0, window.update, 0)
-# runs the gui window in a loop
-window.mainloop()
+if name == "__main__":
+    # creates a window
+    window = Gui()
+    window.after(0, window.update, 0)
+    # runs the gui window in a loop
+    window.mainloop()

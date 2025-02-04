@@ -39,20 +39,10 @@ class CircularLinkedList:
             temp.next = new_node
             new_node.next = self.head  # circular link
 
-    def display(self, duration):
-        # display slides for the given duration
-        current = self.head
-        time_elapsed = 0
-        slides_seen = []
-        while time_elapsed < duration:
-            slides_seen.append(current.slide_id)
-            current = current.next
-            time_elapsed += 20  # each slide is displayed for 20 seconds
-        return slides_seen
-    
+
 def create_slides(number):
     slides = CircularLinkedList()
-    for i in range(0, number):
+    for i in range(1, number+1):
         slides.append(i)
     return slides
     
