@@ -7,6 +7,14 @@ day_end = 14
 dorm_residents = 144
 enrolled_students = 2132
 
+def generate_students(number):    
+    students = []
+    for x in range(number):
+        students.append(Student())
+
+    return students
+
+
 class Student:
     def __init__(self):
 
@@ -40,15 +48,15 @@ class Student:
 
 
     # this method adds slides scene advents to slides scene list
-    def view_slide(self, slide: SlideNode, duration):
-        self.seen_slides.append([SlideNode, duration])
+    # def view_slide(self, slide: SlideNode, duration):
+    #     self.seen_slides.append([SlideNode, duration])
 
-    def check_if_slide_student(self, slide: SlideNode, time_range, day):
-        if self.schedule[day] in range[time_range]:
+    # def check_if_slide_student(self, slide: SlideNode, time_range, day):
+    #     if self.schedule[day] in range[time_range]:
             
-            duration = time_range[1] - self.schedule[day] 
+    #         duration = time_range[1] - self.schedule[day] 
             
-            self.view_slide(SlideNode, duration)
+    #         self.view_slide(SlideNode, duration)
 
 if __name__ == "__main__":
     test_student = Student()
