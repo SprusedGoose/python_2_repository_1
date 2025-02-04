@@ -1,5 +1,5 @@
 import random
-from schedule import daily_schedule  # Assuming this is the correct import
+from daily_schedule import daily_schedule  # Assuming this is the correct import
 
 day_start = 9
 day_end = 14
@@ -47,16 +47,11 @@ class Student:
                     self.schedule[x] = daily_schedule(arrival_time, departure_time)
 
 
-    # this method adds slides scene advents to slides scene list
-    # def view_slide(self, slide: SlideNode, duration):
-    #     self.seen_slides.append([SlideNode, duration])
+    #this method adds slides scene advents to slides scene list
+    def view_slide(self, SlideNode, duration):
+        self.seen_slides.append([SlideNode, duration])
 
-    # def check_if_slide_student(self, slide: SlideNode, time_range, day):
-    #     if self.schedule[day] in range[time_range]:
-            
-    #         duration = time_range[1] - self.schedule[day] 
-            
-    #         self.view_slide(SlideNode, duration)
+
 
 if __name__ == "__main__":
     test_student = Student()
