@@ -7,6 +7,7 @@ from tkinter import PhotoImage
 from customtkinter import CTkLabel
 from utilities import path
 
+
 class Gui(tk.CTk):
     def __init__(self):
         super().__init__()
@@ -191,7 +192,6 @@ class Gui(tk.CTk):
         }
         pass
 
-
     # starts the animation
         self.after(0, self.update, 0)
 
@@ -216,7 +216,7 @@ class Gui(tk.CTk):
         slide_quantity.grid(row=3, column=1)
 
 
-if name == "__main__":
+if __name__ == "__main__":
     # creates a window
     window = Gui()
     window.after(0, window.update, 0)
