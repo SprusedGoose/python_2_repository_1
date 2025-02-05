@@ -16,11 +16,11 @@ class CircularLinkedList:
         current = current.next
     
     
-    def nodes(self):
+    def get_nodes(self):
         nodes = []
         current = self.head
         while True:
-            nodes.append(str(current.slide_id))
+            nodes.append(current)
             current = current.next
             if current == self.head:
                 break

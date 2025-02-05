@@ -10,7 +10,9 @@ enrolled_students = 2132
 def generate_students(number):    
     students = []
     for x in range(number):
-        students.append(Student())
+        student = Student()
+        student.genarate_schedule()
+        students.append(student)
 
     return students
 
@@ -27,9 +29,16 @@ class Student:
 
         # Sign turns off at 10
         
+        
+
+    #this method adds slides scene advents to slides scene list
+    def view_slide(self, SlideNode, duration):
+        self.seen_slides.append([SlideNode, duration])
+
+    def genarate_schedule(self):
         # Generate schedule for dorm residents
         if self.lives_in_dorm == True:
-            for x in range(1, 6):
+            for x in range(0, 7):
                 minimum_day_length = 1
                 arrival_time = random.randint(day_start, day_end - minimum_day_length)
                 departure_time = random.randint(arrival_time + minimum_day_length, day_end)
@@ -47,23 +56,21 @@ class Student:
                     self.schedule[x] = daily_schedule(arrival_time, departure_time)
 
 
-    #this method adds slides scene advents to slides scene list
-    def view_slide(self, SlideNode, duration):
-        self.seen_slides.append([SlideNode, duration])
-
 
 
 if __name__ == "__main__":
     test_student = Student()
 
+    test_student.genarate_schedule()
+
     print(test_student.schedule)
 
 
 
-nominal_sign_viewing_time = 60
-nominal_speed = 25
-actual_speed = 20
+# nominal_sign_viewing_time = 60
+# nominal_speed = 25
+# actual_speed = 20
 
-division_from_nominal_speed_factor = actual_speed / nominal_speed
+# division_from_nominal_speed_factor = actual_speed / nominal_speed
 
-actual_sign_viewing_time = nominal_sign_viewing_time / division_from_nominal_speed_factor
+# actual_sign_viewing_time = nominal_sign_viewing_time / division_from_nominal_speed_factor
