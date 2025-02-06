@@ -2,16 +2,18 @@
 This is a graphical user interface to run the simulation for the college sign.
 """
 from main import Main as sim
+from data_analysis import analyze_slide_viewing
 import customtkinter as tk
 from tkinter import PhotoImage
 from customtkinter import CTkLabel
 from utilities import path
 
-#<<<<<<< data_analysis
-#=======
-#button_values = None  # Initialize as a global variable
+# <<<<<<< data_analysis
+# =======
+# button_values = None  # Initialize as a global variable
 
-#>>>>>>> main
+# >>>>>>> main
+
 
 class Gui(tk.CTk):
     def __init__(self):
@@ -46,7 +48,6 @@ class Gui(tk.CTk):
         speeding_drivers_checkbox = tk.CTkSwitch(self, text="allow speeding drivers", onvalue=1, offvalue=0, command=self.speeding_drivers)
         speeding_drivers_checkbox.grid(row=2, column=2)
         self.speeding_drivers_checkbox = speeding_drivers_checkbox
-        
 
         maximum_speed = tk.CTkEntry(self, width=150)
         maximum_speed.grid(row=4, column=2)
@@ -88,7 +89,7 @@ class Gui(tk.CTk):
 
         speed_bump_label = tk.CTkLabel(self, text=f"speed bump quantity: {speed_bump_slider.get()}")
         speed_bump_label.grid(row=1, column=0)
-        self.speed_bump_label = speed_bump_label    
+        self.speed_bump_label = speed_bump_label
 
         speed_bump_height = tk.CTkSlider(self, fg_color='blue', from_=0, to=6, number_of_steps=6, command=self.speed_bump_height_value)
         speed_bump_height.grid(row=4, column=0)
@@ -180,7 +181,7 @@ class Gui(tk.CTk):
         # after the duration of update speed, the frame changes
         self.after(60, self.update, ind)
 
-    # creates a dark mode function
+    # creates a dark mode method
     def change_appearance(self):
         value = self.appearance.get()
         if value == 1:
@@ -229,8 +230,10 @@ class Gui(tk.CTk):
         button_values = self.values
 
         main = sim(self.values)
-        main.run()
-        
+        output = main.run()
+        self.output_label = tk.CTkLabel(self, text=output)
+        self.output_label.grid(row=12, column=1)
+        # analyze_slide_viewing(input, 20)
 
     # starts the animation
         self.after(0, self.update, 0)

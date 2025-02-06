@@ -1,6 +1,6 @@
 
 import Simulation_file as simulator
-
+from data_analysis import analyze_slide_viewing
 class Main():
     def __init__(self, settings):
         self.settings = settings
@@ -14,7 +14,7 @@ class Main():
     #     #     window.after(0, window.update, 0)
     #     #     # runs the gui window in a loop
     #     #     window.mainloop()
-            
+
     #     while button_values is None:  # Wait until button_values is set
     #         pass
     #     settings = button_values  # Retrieve settings from GUI
@@ -22,12 +22,15 @@ class Main():
 
     def run(self):
         sim = simulator.simulation(**self.settings)
-        
+
         sim.simulate_sign_viewing()
-        sim.get_output()
-        #sim.say_hello()
+        sym_output = sim.get_output()
+        output = analyze_slide_viewing(sym_output, 20)
         
+        return output
         
+
+
 
 # Initialize settings with None before passing it to Main
 settings = None
