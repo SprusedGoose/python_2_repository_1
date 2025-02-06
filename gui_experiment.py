@@ -7,8 +7,11 @@ from tkinter import PhotoImage
 from customtkinter import CTkLabel
 from utilities import path
 
-button_values = None  # Initialize as a global variable
+#<<<<<<< data_analysis
+#=======
+#button_values = None  # Initialize as a global variable
 
+#>>>>>>> main
 
 class Gui(tk.CTk):
     def __init__(self):
@@ -152,6 +155,9 @@ class Gui(tk.CTk):
         # packs the entry button to the gui
         self.entry_button.grid(row=11, column=1)
 
+        self.output = tk.CTkLabel(self, text='')
+        self.output.grid(row=12, column=1)
+
     # taken and modified from stackoverflow
     # creates a function called update
     def update(self, ind):
@@ -225,7 +231,6 @@ class Gui(tk.CTk):
         main = sim(self.values)
         main.run()
         
-
 
     # starts the animation
         self.after(0, self.update, 0)
