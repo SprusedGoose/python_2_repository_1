@@ -2,8 +2,8 @@
 # import tkinter as tk
 from random import randint
 import tkinter as tk
-from tkinter import Label, PhotoImage
-from utilities import path
+from tkinter import Label
+# from utilities import path
 
 
 def generate_slides(slide_count, slide_duration, slide_events):
@@ -26,7 +26,7 @@ class student:
 
 
 # everything beyond this point is used for data analysis, all of the above is just to test it.
-def analyze_slide_viewing(list_of_students):
+def analyze_slide_viewing(list_of_students, slide_count):
     """
     this function takes a list of students along with the tuples that give what signs they saw and what duration they saw it.
     it then uses a dictionary to track how many slides have been seen overall
@@ -65,17 +65,18 @@ def analyze_slide_viewing(list_of_students):
     # finds the average number of slides seen across all of the students.
     # It does this by dividing how many slides every student saw together and divides it by the amount of students
     average_unique_slides = total_unique_slides / total_students if total_students > 0 else 0
+    percentage_of_slides = round((average_unique_slides / slide_count)*100)
 
     # for slide, count in slide_view_count.items():
     #     print(f"Slide {slide} was seen by {count} students.")
 
-    return f"\nthe students see {average_unique_slides:.2f} slides on average"
+    return f"\non average, the students see {average_unique_slides:.2f} or {percentage_of_slides}% of the total slides"
 
 
-def output_data(student_list):
+def output_data(student_list, slide_count):
     window = tk.Tk()
 
-    output_label = Label(window, text=analyze_slide_viewing(student_list))
+    output_label = Label(window, text=analyze_slide_viewing(student_list, slide_count))
     output_label.pack()
 
     window.mainloop()
@@ -83,16 +84,11 @@ def output_data(student_list):
 
 if __name__ == "__main__":
     students = []
+    slide_count = 20
     # Creates 100 random students with random slide events (Carmine did this part to help me test it)
     for x in range(100):
-        students.append(student(generate_slides(20, 20, 30)))
+        students.append(student(generate_slides(slide_count, 20, 30)))
     # tells the program to Analyze how many students saw each slide and calculate the average number of slides seen by a student
     # analyze_slide_viewing(students)
 
-    output_data(students)
-    # window = tk.Tk()
-
-    # output_label = Label(window, text=analyze_slide_viewing(students))
-    # output_label.pack()
-
-    # window.mainloop()
+    output_data(students, slide_count)
