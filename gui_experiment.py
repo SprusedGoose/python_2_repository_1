@@ -2,7 +2,6 @@
 This is a graphical user interface to run the simulation for the college sign.
 """
 from main import Main as sim
-from data_analysis import analyze_slide_viewing
 import customtkinter as tk
 from tkinter import PhotoImage
 from customtkinter import CTkLabel
@@ -50,19 +49,19 @@ class Gui(tk.CTk):
         self.speeding_drivers_checkbox = speeding_drivers_checkbox
 
         maximum_speed = tk.CTkEntry(self, width=150)
-        maximum_speed.grid(row=4, column=2)
+        maximum_speed.grid(row=6, column=2)
         self.maximum_speed = maximum_speed
 
         maximum_speed_label = tk.CTkLabel(self, text='enter maximum speed')
-        maximum_speed_label.grid(row=3, column=2)
+        maximum_speed_label.grid(row=5, column=2)
         self.maximum_speed_label = maximum_speed_label
 
         speed_variation = tk.CTkEntry(self, width=150)
-        speed_variation.grid(row=6, column=2)
+        speed_variation.grid(row=8, column=2)
         self.speed_variation = speed_variation
 
         speed_variation_label = tk.CTkLabel(self, text='driver speed variation')
-        speed_variation_label.grid(row=5, column=2)
+        speed_variation_label.grid(row=7, column=2)
         self.speed_variation_label = speed_variation_label
 
         # second column
@@ -81,6 +80,14 @@ class Gui(tk.CTk):
         slide_count_label = tk.CTkLabel(self, text=f" slide count: {slide_count.get()} ")
         slide_count_label.grid(row=3, column=1)
         self.slide_count_label = slide_count_label
+
+        simulation_duration = tk.CTkSlider(self, fg_color='blue', from_=1, to=26, number_of_steps=25, command=self.simulation_time_duration)
+        simulation_duration.grid(row=4, column=2)
+        self.simulation_duration = simulation_duration
+
+        simulation_duration_label = tk.CTkLabel(self, text=f"simulation duration: {int(simulation_duration.get())} days")
+        simulation_duration_label.grid(row=3, column=2)
+        self.simulaton_duration_label = simulation_duration_label
 
         # speed bump settings
         speed_bump_slider = tk.CTkSlider(self, fg_color='blue', from_=0, to=4, number_of_steps=4, command=self.speed_bump_quantity_value)
@@ -257,6 +264,10 @@ class Gui(tk.CTk):
     def slider_count(self, value):
         slide_quantity = tk.CTkLabel(self, text=f"slide count: {value}")
         slide_quantity.grid(row=3, column=1)
+
+    def simulation_time_duration(self, value):
+        slide_quantity = tk.CTkLabel(self, text=f"simulation duration: {value} days")
+        slide_quantity.grid(row=3, column=2)
 
 
 if __name__ == "__main__":
