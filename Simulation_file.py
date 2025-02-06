@@ -1,5 +1,7 @@
  # simulation file
 
+import random
+
 import LinkedList
 #from gui_experiment import *
 import Student
@@ -35,9 +37,13 @@ class simulation:
 
 
         # initialize students and slides
-        self.students = Student.generate_students(2)
+        self.students = Student.generate_students(3)
+       # print(f'students {self.students}')
+
+        # for student in self.students:
+        #     print(student.schedule[1].arival_time)
         
-        self.sign = LinkedList.create_slides(10)
+        self.sign = LinkedList.create_slides(3)
 
         self.slide_queue = Queue()
 
@@ -54,9 +60,9 @@ class simulation:
         for day in range(run_time):
             # add days worth of slides to the queue
 
-            print(day)
+            #print(day)
 
-            time = 0
+            time = 0 #time in seconds from start of day
             while(time < 24*60*60):
                 for slide in slides_list:
                     self.slide_queue.put((slide, time, day))
@@ -68,13 +74,30 @@ class simulation:
         while not self.slide_queue.empty():
             slide, time, day = self.slide_queue.get()
             for student in self.students:
-                if student.schedule[day%7].arival_time in range(time, time + self.slide_duration):
-                    student.view_slide(slide, time - student.schedule[day%7].arival_time + self.view_duration)
+                
+                #convert sudent arival time in hours to seconds since day start
+                student_starting_time = student.schedule[day%7].arival_time * 60*60 + random.randint(0, 5*60)
+                #print(f'day: {day} student_id: {student.id} student: arival time{student.schedule[day%7].arival_time}')
+                #print(f'compairing {student_arving_time} {time}')
+                #print(student.schedule[day%7].arival_time * 60*60)
 
+
+                
+                
+                if student_starting_time in range(time, time + self.slide_duration):
+                    student.view_slide(slide, time - student_starting_time + self.view_duration)
+ 
 
     def get_output(self):
+        # for student in self.students:
+        #     print(student.seen_slides)
+
+        output = []
         for student in self.students:
-            print(student.seen_slides)
+            for advents in student.seen_slides:
+                output.append(advents)
+            
+        print(output)
 
 
 

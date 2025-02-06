@@ -1,7 +1,7 @@
 """
 This is a graphical user interface to run the simulation for the college sign.
 """
-
+import main
 import customtkinter as tk
 from tkinter import PhotoImage
 from customtkinter import CTkLabel
@@ -221,6 +221,8 @@ class Gui(tk.CTk):
                 "speed_excess": self.speeding_drivers()
         }
         button_values = self.values
+
+        main = main.Main(self.values)
         
 
 
