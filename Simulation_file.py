@@ -9,32 +9,42 @@ import Student
 from queue import Queue
 class simulation:
     def __init__(self,
-        randomized_slide_checkbox, 
-        speeding_drivers_checkbox, 
-        maximum_speed,
+        #randomized_slide_checkbox, 
+        #speeding_drivers_checkbox, 
+        #maximum_speed,
         slide_duration,
         slide_count,
-        speed_bump_slider,
+        #speed_bump_slider,
         speed_bump_height,
-        speed_bump_distance,
-        run_sample,
-        run_time,
-        view_duration
+        #speed_bump_distance,
+        #run_sample,
+        #run_time,
+        #view_duration,
+        speed_bump_quantity,
+        speed_bump_spacing,
+        viewing_distance,
+        school_start,
+        school_end,
+        total_students,
+        dorm_students,
+        speed_excess,
+
+
     
     ):  
-        self.randomized_slide_checkbox = randomized_slide_checkbox
-        self.speeding_drivers_checkbox = speeding_drivers_checkbox
-        self.maximum_speed = maximum_speed
-        self.slide_duration = slide_duration
-        self.slide_count = slide_count
-        self.speed_bump_slider = speed_bump_slider
-        self.speed_bump_height = speed_bump_height
-        self.speed_bump_distance = speed_bump_distance
-        self.run_sample = run_sample
-        self.run_time = run_time
-        self.view_duration = view_duration
+        #self.randomized_slide_checkbox = randomized_slide_checkbox
+        #self.speeding_drivers_checkbox = speeding_drivers_checkbox
+        #self.maximum_speed = maximum_speed
+        self.slide_duration = int(slide_duration)
+        #self.slide_count = slide_count
+        #self.speed_bump_slider = speed_bump_slider
+        #self.speed_bump_height = speed_bump_height
+        #self.speed_bump_distance = speed_bump_distance
+        #self.run_sample = run_sample
+        #self.run_time = run_time
+        #self.view_duration = view_duration
  
-
+        run_time = 4
 
         # initialize students and slides
         self.students = Student.generate_students(3)
@@ -51,7 +61,7 @@ class simulation:
 
         time = 0
 
-        view_duration = 20
+        self.view_duration = 20
         
 
         print("run")

@@ -1,7 +1,7 @@
 """
 This is a graphical user interface to run the simulation for the college sign.
 """
-import main
+from main import Main as sim
 import customtkinter as tk
 from tkinter import PhotoImage
 from customtkinter import CTkLabel
@@ -222,7 +222,8 @@ class Gui(tk.CTk):
         }
         button_values = self.values
 
-        main = main.Main(self.values)
+        main = sim(self.values)
+        main.run()
         
 
 

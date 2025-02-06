@@ -1,5 +1,5 @@
 
-import Simulation_file as sim
+import Simulation_file as simulator
 
 class Main():
     def __init__(self, settings):
@@ -21,7 +21,7 @@ class Main():
     #     print(settings)
 
     def run(self):
-        sim = sim.simulation(self.settings)
+        sim = simulator.simulation(**self.settings)
         
         sim.simulate_sign_viewing()
         sim.get_output()
@@ -33,4 +33,3 @@ class Main():
 settings = None
 main = Main(settings)
 # gui.after(0, gui.update, 0)
-main.get_settings()
