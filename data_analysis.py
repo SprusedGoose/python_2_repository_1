@@ -33,7 +33,7 @@ def analyze_slide_viewing(list_of_students, slide_count):
 
     """
 
-    
+
 
     # Initializes a dictionary to track how many students saw each slide (1 to 20)
     slide_view_count = {i: 0 for i in range(1, 21)}
@@ -80,6 +80,7 @@ def output_data(student_list, slide_count):
     output_label.pack()
 
     window.mainloop()
+    
 
 
 if __name__ == "__main__":

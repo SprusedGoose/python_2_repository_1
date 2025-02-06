@@ -24,7 +24,7 @@ class CircularLinkedList:
             current = current.next
             if current == self.head:
                 break
-        
+
         return nodes
 
     def append(self, slide_id):
@@ -46,9 +46,9 @@ def create_slides(number):
         slides.append(i)
     return slides
 
-if __name__ == "__main__": 
+if __name__ == "__main__":
     slide_list = create_slides(20)
-    print(slide_list.nodes())
+    print(slide_list.get_nodes())
 
 
 
