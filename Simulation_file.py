@@ -55,8 +55,6 @@ class simulation:
                 # get curent slide
                 self.current_slide = self.sign.next_slide()
                 
-                #incroment time
-                self.time = self.time + self.slide_duration
                 
                 # add all students to the queue
                 self.student_queue.extend(self.students)
@@ -64,15 +62,29 @@ class simulation:
                 #compare student => visabilty time to slide display time
                 while len(self.student_queue) > 0:                   
                     student = self.student_queue.popleft()
-                    student_starting_time = student.schedule[day%7].arival_time * 60*60 + random.randint(0, 5*60)
+                    
+                    
+                    student_starting_time = int(student.schedule[day%7].arival_time * 60*60 + random.randint(0, 5*60))
+                    #print(f'checking student start time:{student_starting_time} against curent time: {self.time}')
+    
+
                     if student_starting_time in range(self.time, self.time + self.slide_duration):
                         student.view_slide(self.current_slide.slide_id, self.time - student_starting_time + self.viewing_duration)
-                        
-                        #print(f'student {student.id} saw slide {self.current_slide.slide_id} at {self.time} \n the students schedule was {student.schedule}')
+                
+                        print("slide seen<============")
+                        #input()
+                    
+                        print(f'student {student.id} saw slide {self.current_slide.slide_id} at {self.time} \n the students schedule was {student.schedule}')
                         #print(self.current_slide)
+                    
+                    else:
+                        pass
+                        #print("slide not scene")
                     
 
 
+                #incroment time
+                self.time = self.time + self.slide_duration
                 
                 
 
@@ -112,8 +124,8 @@ class simulation:
     # this should trigger the class to get the data from linked_lists and combine it into a single output for futher processing
     def get_output(self):
         
-        for student in self.students:
-            print(f'{student.view_events} {student.schedule}  {student.id}')
+        #for student in self.students:
+            #print(f'{student.view_events} {student.schedule}  {student.id}')
         return self.students
 
 
