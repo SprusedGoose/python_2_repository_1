@@ -2,7 +2,6 @@
 This is a graphical user interface to run the simulation for the college sign.
 """
 from main import Main as sim
-from data_analysis import analyze_slide_viewing
 import customtkinter as tk
 from tkinter import PhotoImage
 from customtkinter import CTkLabel
@@ -49,20 +48,22 @@ class Gui(tk.CTk):
         speeding_drivers_checkbox.grid(row=2, column=2)
         self.speeding_drivers_checkbox = speeding_drivers_checkbox
 
-        maximum_speed = tk.CTkEntry(self, width=150)
-        maximum_speed.grid(row=4, column=2)
-        self.maximum_speed = maximum_speed
+        # maximum_speed = tk.CTkEntry(self, width=150)
+        # maximum_speed.grid(row=6, column=2)
+        # self.maximum_speed = maximum_speed
 
-        maximum_speed_label = tk.CTkLabel(self, text='enter maximum speed')
-        maximum_speed_label.grid(row=3, column=2)
-        self.maximum_speed_label = maximum_speed_label
+        # maximum_speed_label = tk.CTkLabel(self, text='enter maximum speed')
+        # maximum_speed_label.grid(row=5, column=2)
+        # self.maximum_speed_label = maximum_speed_label
 
-        speed_variation = tk.CTkEntry(self, width=150)
-        speed_variation.grid(row=6, column=2)
+        speed_val = tk.StringVar()
+        speed_val.set("5")
+        speed_variation = tk.CTkEntry(self, width=150, textvariable=speed_val)
+        speed_variation.grid(row=8, column=2)
         self.speed_variation = speed_variation
 
         speed_variation_label = tk.CTkLabel(self, text='driver speed variation')
-        speed_variation_label.grid(row=5, column=2)
+        speed_variation_label.grid(row=7, column=2)
         self.speed_variation_label = speed_variation_label
 
         # second column
@@ -82,6 +83,14 @@ class Gui(tk.CTk):
         slide_count_label.grid(row=3, column=1)
         self.slide_count_label = slide_count_label
 
+        simulation_duration = tk.CTkSlider(self, fg_color='blue', from_=1, to=26, number_of_steps=25, command=self.simulation_time_duration)
+        simulation_duration.grid(row=4, column=2)
+        self.simulation_duration = simulation_duration
+
+        simulation_duration_label = tk.CTkLabel(self, text=f"simulation duration: {int(simulation_duration.get())} days")
+        simulation_duration_label.grid(row=3, column=2)
+        self.simulation_duration_label = simulation_duration_label
+
         # speed bump settings
         speed_bump_slider = tk.CTkSlider(self, fg_color='blue', from_=0, to=4, number_of_steps=4, command=self.speed_bump_quantity_value)
         speed_bump_slider.grid(row=2, column=0)
@@ -99,24 +108,29 @@ class Gui(tk.CTk):
         speed_bump_height_label.grid(row=3, column=0)
         self.speed_bump_height_label = speed_bump_height_label
 
-        speed_bump_distance = tk.CTkSlider(self, fg_color='blue', from_=0, to=6, number_of_steps=6, command=self.speed_bump_spacing)
-        speed_bump_distance.grid(row=6, column=0)
-        self.speed_bump_distance = speed_bump_distance
+        # speed_bump_distance = tk.CTkSlider(self, fg_color='blue', from_=0, to=6, number_of_steps=6, command=self.speed_bump_spacing)
+        # speed_bump_distance.grid(row=6, column=0)
+        # self.speed_bump_distance = speed_bump_distance
 
-        speed_bump_distance_label = tk.CTkLabel(self, text=f"speedbump distance: {speed_bump_distance.get()} units")
-        speed_bump_distance_label.grid(row=5, column=0)
-        self.speed_bump_distance_label = speed_bump_distance_label
+        # speed_bump_distance_label = tk.CTkLabel(self, text=f"speedbump distance: {speed_bump_distance.get()} units")
+        # speed_bump_distance_label.grid(row=5, column=0)
+        # self.speed_bump_distance_label = speed_bump_distance_label
 
         # sign viewing settings
-        viewing_distance = tk.CTkEntry(self, width=150)
-        viewing_distance.grid(row=6, column=1)
-        self.viewing_distance = viewing_distance
 
-        view_dist = tk.CTkLabel(self, text="viewing distance")
-        view_dist.grid(row=5, column=1)
-        self.view_dist = view_dist
+        view_dur_val = tk.StringVar()
+        view_dur_val.set("5")
+        viewing_duration = tk.CTkEntry(self, width=150, textvariable=view_dur_val)
+        viewing_duration.grid(row=6, column=1)
+        self.viewing_duration = viewing_duration
 
-        school_start = tk.CTkEntry(self, width=150)
+        view_duration = tk.CTkLabel(self, text="viewing duration")
+        view_duration.grid(row=5, column=1)
+        self.view_duration = view_duration
+
+        school_start_val = tk.StringVar()
+        school_start_val.set("5")
+        school_start = tk.CTkEntry(self, width=150, textvariable=school_start_val)
         school_start.grid(row=8, column=1)
         self.school_start = school_start
 
@@ -124,7 +138,9 @@ class Gui(tk.CTk):
         school_start_label.grid(row=7, column=1)
         self.school_start_label = school_start_label
 
-        school_end = tk.CTkEntry(self, width=150)
+        school_end_val = tk.StringVar()
+        school_end_val.set("5")
+        school_end = tk.CTkEntry(self, width=150, textvariable=school_end_val)
         school_end.grid(row=10, column=1)
         self.school_end = school_end
 
@@ -132,19 +148,27 @@ class Gui(tk.CTk):
         school_end_label.grid(row=9, column=1)
         self.school_end_label = school_end_label
 
+
+        
         self.total_students_label = tk.CTkLabel(self, text='total enrolled students')
         self.total_students_label.grid(row=7, column=0)
         self.total_students_label = self.total_students_label
 
-        self.total_students = tk.CTkEntry(self, width=150)
+        
+        total_students_val = tk.StringVar()
+        total_students_val.set("5")
+        self.total_students = tk.CTkEntry(self, width=150, textvariable=total_students_val)
         self.total_students.grid(row=8, column=0)
         self.total_students = self.total_students
 
-        self.dorm_students_label = tk.CTkLabel(self, text='total enrolled students')
+        self.dorm_students_label = tk.CTkLabel(self, text='dorm students')
         self.dorm_students_label.grid(row=9, column=0)
         self.dorm_students_label = self.dorm_students_label
 
-        self.dorm_students = tk.CTkEntry(self, width=150)
+
+        dorm_students_val = tk.StringVar()
+        dorm_students_val.set("5")
+        self.dorm_students = tk.CTkEntry(self, width=150, textvariable=dorm_students_val)
         self.dorm_students.grid(row=10, column=0)
         self.dorm_students = self.dorm_students
 
@@ -214,27 +238,85 @@ class Gui(tk.CTk):
         same goes for this function
 
         """
+        try: 
+           speed_variation = float(self.speed_variation.get())
+           self.speed_variation.configure(fg_color = 'white')
+        except Exception as ex:
+            self.speed_variation.configure(fg_color = 'red')
+            print('error, enter a number value')
+            print(ex)
+
+        try: 
+           viewing_duration = float(self.viewing_duration.get())
+           self.viewing_duration.configure(fg_color = 'white')
+        except Exception as ex:
+            self.viewing_duration.configure(fg_color = 'red')
+            print('error, enter a number value')
+            print(ex)
+
+        try: 
+            school_start = float(self.school_start.get())
+            self.school_start.configure(fg_color = 'white')
+        except Exception as ex:
+            self.school_start.configure(fg_color = 'red')
+            print('error, enter a number value')
+            print(ex)
+
+        try: 
+            school_end = float(self.school_end.get())
+            self.school_end.configure(fg_color = 'white')
+        except Exception as ex:
+            self.school_end.configure(fg_color = 'red')
+            print('error, enter a number value')
+            print(ex)
+        
+        try: 
+           total_students = int(self.total_students.get())
+           self.total_students.configure(fg_color = 'white')
+        except Exception as ex:
+            self.total_students.configure(fg_color = 'red')
+            print('error, enter a number value')
+            print(ex)
+
+        try: 
+           dorm_students = int(self.dorm_students.get())
+           self.dorm_students.configure(fg_color = 'white')
+        except Exception as ex:
+            self.dorm_students.configure(fg_color = 'red')
+            print('error, enter a number value')
+            print(ex)
+        
         self.values = {
                 "speed_bump_quantity": self.speed_bump_slider.get(),
                 "speed_bump_height": self.speed_bump_height.get(),
                 "slide_duration": self.slide_duration.get(),
-                "slide_count": self.slide_count.get(),
-                "speed_bump_spacing": self.speed_bump_distance.get(),
-                "viewing_distance": self.viewing_distance.get(),
-                "school_start": self.school_start.get(),
-                "school_end": self.school_end.get(),
-                "total_students": self.total_students.get(),
-                "dorm_students": self.dorm_students.get(),
-                "speed_excess": self.speeding_drivers()
+                "slide_count": int(self.slide_count.get()),
+                # "speed_bump_spacing": self.speed_bump_distance.get(),
+                "viewing_duration": viewing_duration,
+                "school_start": school_start,
+                "school_end": school_end,
+                "total_students": total_students,
+                "dorm_students": dorm_students,
+                "speed_excess": self.speeding_drivers(),
+                "simulation_duration": int(self.simulation_duration.get())
         }
+        
         button_values = self.values
-
+        
         main = sim(self.values)
         output = main.run()
-        self.output_label = tk.CTkLabel(self, text=output)
+        self.output_label = CTkLabel(self, text=output)
         self.output_label.grid(row=12, column=1)
+        # print(button_values)
         # analyze_slide_viewing(input, 20)
-
+        
+        
+        # self.speed_variation.configure(fg_color = 'white')
+        # self.viewing_duration.configure(fg_color = 'white')
+        # self.school_start.configure(fg_color = 'white')
+        # self.school_end.configure(fg_color = 'white')
+        # self.total_students.configure(fg_color = 'white')
+        # self.dorm_students.configure(fg_color = 'white')
     # starts the animation
         self.after(0, self.update, 0)
 
@@ -250,13 +332,17 @@ class Gui(tk.CTk):
         slide_time = tk.CTkLabel(self, text=f"slide duration: {value} seconds")
         slide_time.grid(row=1, column=1)
 
-    def speed_bump_spacing(self, value):
-        speed_bumps_spacing = tk.CTkLabel(self, text=f"speedbump distance: {value} units")
-        speed_bumps_spacing.grid(row=5, column=0)
+    # def speed_bump_spacing(self, value):
+    #     speed_bumps_spacing = tk.CTkLabel(self, text=f"speedbump distance: {value} units")
+    #     speed_bumps_spacing.grid(row=5, column=0)
 
     def slider_count(self, value):
         slide_quantity = tk.CTkLabel(self, text=f"slide count: {value}")
         slide_quantity.grid(row=3, column=1)
+
+    def simulation_time_duration(self, value):
+        slide_quantity = tk.CTkLabel(self, text=f"simulation duration: {value} days")
+        slide_quantity.grid(row=3, column=2)
 
 
 if __name__ == "__main__":

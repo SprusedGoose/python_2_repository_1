@@ -20,19 +20,21 @@ class simulation:
         # speed_bump_distance,
         # run_sample,
         # run_time,
-        # view_duration,
+        viewing_duration,
         speed_bump_quantity,
-        speed_bump_spacing,
-        viewing_distance,
+        #speed_bump_spacing,
+        #viewing_distance,
         school_start,
         school_end,
         total_students,
         dorm_students,
-        speed_excess
+        speed_excess,
+        simulation_duration,
     ):
         # self.randomized_slide_checkbox = randomized_slide_checkbox
         # self.speeding_drivers_checkbox = speeding_drivers_checkbox
         # self.maximum_speed = maximum_speed
+        self.slide_count = slide_count
         self.slide_duration = int(slide_duration)
         # self.slide_count = slide_count
         # self.speed_bump_slider = speed_bump_slider
@@ -40,18 +42,18 @@ class simulation:
         # self.speed_bump_distance = speed_bump_distance
         # self.run_sample = run_sample
         # self.run_time = run_time
-        # self.view_duration = view_duration
+        self.viewing_duration = viewing_duration
 
-        run_time = 4
+        self.simulation_duration = int(simulation_duration)
 
         # initialize students and slides
-        self.students = Student.generate_students(3)
+        self.students = Student.generate_students(total_students, dorm_students, school_start, school_end)
         # print(f'students {self.students}')
 
         # for student in self.students:
         #     print(student.schedule[1].arival_time)
 
-        self.sign = LinkedList.create_slides(3)
+        self.sign = LinkedList.create_slides(self.slide_count)
 
         self.slide_queue = Queue()
 
@@ -59,12 +61,12 @@ class simulation:
 
         time = 0
 
-        self.view_duration = 20
+        #self.view_duration = 20
 
         print("run")
 
         # add each days to cue
-        for day in range(run_time):
+        for day in range(simulation_duration):
             # add days worth of slides to the queue
 
             # print(day)
@@ -89,7 +91,7 @@ class simulation:
                 # print(student.schedule[day%7].arival_time * 60*60)
 
                 if student_starting_time in range(time, time + self.slide_duration):
-                    student.view_slide(slide.slide_id, time - student_starting_time + self.view_duration)
+                    student.view_slide(slide.slide_id, time - student_starting_time + self.viewing_duration)
 
 
     # this should trigger the class to get the data from linked_lists and combine it into a single output for futher processing
@@ -115,69 +117,3 @@ if __name__ == "__main__":
     sim.get_output()
     # sim.say_hello()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# class Settings:
-#     def __init__(self,
-#                 randomized_slide_checkbox,
-#                 speeding_drivers_checkbox,
-#                 maximum_speed,
-#                 slide_duration,
-#                 slide_count,
-#                 speed_bump_slider,
-#                 speed_bump_height,
-#                 speed_bump_distance,
-#                 run_sample,
-
-
-#                 ):
-
-#         self.randomized_slide_checkbox = randomized_slide_checkbox
-#         self.speeding_drivers_checkbox = speeding_drivers_checkbox
-#         self.maximum_speed = maximum_speed
-#         self.slide_duration = slide_duration
-#         self.slidecount = slide_count
-#         self.speed_bump_slider = speed_bump_slider
-#         self.speed_bump_height = speed_bump_height
-#         self.speed_bump_distance = speed_bump_distance
-#         self.run_sample = run_sample
-
-
-# settings = Settings()
-# gui = Gui(settings)
