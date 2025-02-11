@@ -104,24 +104,6 @@ class simulation:
 
     print("queue")
 
-
-        
-        
-        
-        
-        
-        # while not self.slide_queue.empty():
-        #     slide, time, day = self.slide_queue.get()
-        #     for student in self.students:
-
-        #         # convert sudent arival time in hours to seconds since day start
-        #         student_starting_time = student.schedule[day%7].arival_time * 60*60 + random.randint(0, 5*60)
-
-        #         if student_starting_time in range(time, time + self.slide_duration):
-        #             student.view_slide(slide.slide_id, time - student_starting_time + self.viewing_duration)
-
-
-    # this should trigger the class to get the data from linked_lists and combine it into a single output for futher processing
     def get_output(self):
         
         #for student in self.students:
