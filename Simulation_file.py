@@ -71,10 +71,10 @@ class simulation:
                     if student_starting_time in range(self.time, self.time + self.slide_duration):
                         student.view_slide(self.current_slide.slide_id, self.time - student_starting_time + self.viewing_duration)
                 
-                        print("slide seen<============")
+                        #print("slide seen<============")
                         #input()
                     
-                        print(f'student {student.id} saw slide {self.current_slide.slide_id} at {self.time} \n the students schedule was {student.schedule}')
+                        #print(f'student {student.id} saw slide {self.current_slide.slide_id} at {self.time} \n the students schedule was {student.schedule}')
                         #print(self.current_slide)
                     
                     else:
@@ -86,21 +86,7 @@ class simulation:
                 #incroment time
                 self.time = self.time + self.slide_duration
                 
-                
 
-                # This always gose last
-                
-
-    # # add each days to cue
-    # for day in range(simulation_duration):
-    #     # add days worth of slides to the queue
-
-    #     # time in seconds from start of day
-    #     time = 0
-    #     while (time < 24*60*60):
-    #         for slide in slides_list:
-    #             self.slide_queue.put((slide, time, day))
-    #             time = time + self.slide_duration
 
     print("queue")
 
