@@ -1,29 +1,21 @@
 # simulation file
 
+from collections import deque
+
 import random
 
 import LinkedList
 # rom gui_experiment import *
 import Student
-from queue import Queue
 
 
 class simulation:
     def __init__(self,
-        # randomized_slide_checkbox,
-        # speeding_drivers_checkbox,
-        # maximum_speed,
         slide_duration,
         slide_count,
-        # speed_bump_slider,
         speed_bump_height,
-        # speed_bump_distance,
-        # run_sample,
-        # run_time,
         viewing_duration,
         speed_bump_quantity,
-        #speed_bump_spacing,
-        #viewing_distance,
         school_start,
         school_end,
         total_students,
@@ -31,80 +23,99 @@ class simulation:
         speed_excess,
         simulation_duration,
     ):
-        # self.randomized_slide_checkbox = randomized_slide_checkbox
-        # self.speeding_drivers_checkbox = speeding_drivers_checkbox
-        # self.maximum_speed = maximum_speed
+        # ititialize parameter variables
         self.slide_count = slide_count
+        
         self.slide_duration = int(slide_duration)
-        # self.slide_count = slide_count
-        # self.speed_bump_slider = speed_bump_slider
-        # self.speed_bump_height = speed_bump_height
-        # self.speed_bump_distance = speed_bump_distance
-        # self.run_sample = run_sample
-        # self.run_time = run_time
+
         self.viewing_duration = viewing_duration
 
         self.simulation_duration = int(simulation_duration)
 
-        # initialize students and slides
+        # Initilise students and sign
         self.students = Student.generate_students(total_students, dorm_students, school_start, school_end)
-        # print(f'students {self.students}')
-
-        # for student in self.students:
-        #     print(student.schedule[1].arival_time)
-
+    
+        print(self.slide_count)
         self.sign = LinkedList.create_slides(self.slide_count)
 
-        self.slide_queue = Queue()
+        self.student_queue = deque()
 
-        slides_list = self.sign.get_nodes()
-
-        time = 0
-
-        #self.view_duration = 20
-
-        print("run")
-
-        # add each days to cue
-        for day in range(simulation_duration):
-            # add days worth of slides to the queue
-
-            # print(day)
-            # time in seconds from start of day
-            time = 0
-            while (time < 24*60*60):
-                for slide in slides_list:
-                    self.slide_queue.put((slide, time, day))
-                    time = time + self.slide_duration
-
-        print("queue")
+        # initilize time counter
+        self.time = 0
 
     def simulate_sign_viewing(self):
-        while not self.slide_queue.empty():
-            slide, time, day = self.slide_queue.get()
-            for student in self.students:
+        print("run")
 
-                # convert sudent arival time in hours to seconds since day start
-                student_starting_time = student.schedule[day%7].arival_time * 60*60 + random.randint(0, 5*60)
-                # print(f'day: {day} student_id: {student.id} student: arival time{student.schedule[day%7].arival_time}')
-                # print(f'compairing {student_arving_time} {time}')
-                # print(student.schedule[day%7].arival_time * 60*60)
+        # on every day
+        for day in range(self.simulation_duration):
+            
+            # run through all slides
+            self.time = 0
+            while (self.time < 24*60*60):
+                # get curent slide
+                self.current_slide = self.sign.next_slide()
+                
+                #incroment time
+                self.time = self.time + self.slide_duration
+                
+                # add all students to the queue
+                self.student_queue.extend(self.students)
+                
+                #compare student => visabilty time to slide display time
+                while len(self.student_queue) > 0:                   
+                    student = self.student_queue.popleft()
+                    student_starting_time = student.schedule[day%7].arival_time * 60*60 + random.randint(0, 5*60)
+                    if student_starting_time in range(self.time, self.time + self.slide_duration):
+                        student.view_slide(self.current_slide.slide_id, self.time - student_starting_time + self.viewing_duration)
+                        
+                        #print(f'student {student.id} saw slide {self.current_slide.slide_id} at {self.time} \n the students schedule was {student.schedule}')
+                        #print(self.current_slide)
+                    
 
-                if student_starting_time in range(time, time + self.slide_duration):
-                    student.view_slide(slide.slide_id, time - student_starting_time + self.viewing_duration)
+
+                
+                
+
+                # This always gose last
+                
+
+    # # add each days to cue
+    # for day in range(simulation_duration):
+    #     # add days worth of slides to the queue
+
+    #     # time in seconds from start of day
+    #     time = 0
+    #     while (time < 24*60*60):
+    #         for slide in slides_list:
+    #             self.slide_queue.put((slide, time, day))
+    #             time = time + self.slide_duration
+
+    print("queue")
+
+
+        
+        
+        
+        
+        
+        # while not self.slide_queue.empty():
+        #     slide, time, day = self.slide_queue.get()
+        #     for student in self.students:
+
+        #         # convert sudent arival time in hours to seconds since day start
+        #         student_starting_time = student.schedule[day%7].arival_time * 60*60 + random.randint(0, 5*60)
+
+        #         if student_starting_time in range(time, time + self.slide_duration):
+        #             student.view_slide(slide.slide_id, time - student_starting_time + self.viewing_duration)
 
 
     # this should trigger the class to get the data from linked_lists and combine it into a single output for futher processing
     def get_output(self):
-        #for student in self.students:
-         #   print(student.seen_slides)
-
-        #output = []
-        #for student in self.students:
-         #   for advents in student.seen_slides:
-          #      output.append(advents)
-
+        
+        for student in self.students:
+            print(f'{student.view_events} {student.schedule}  {student.id}')
         return self.students
+
 
     def say_hello(self):
         return self.students

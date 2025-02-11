@@ -119,7 +119,7 @@ class Gui(tk.CTk):
         # sign viewing settings
 
         view_dur_val = tk.StringVar()
-        view_dur_val.set("5")
+        view_dur_val.set("20")
         viewing_duration = tk.CTkEntry(self, width=150, textvariable=view_dur_val)
         viewing_duration.grid(row=6, column=1)
         self.viewing_duration = viewing_duration
@@ -129,7 +129,7 @@ class Gui(tk.CTk):
         self.view_duration = view_duration
 
         school_start_val = tk.StringVar()
-        school_start_val.set("5")
+        school_start_val.set("9")
         school_start = tk.CTkEntry(self, width=150, textvariable=school_start_val)
         school_start.grid(row=8, column=1)
         self.school_start = school_start
@@ -139,7 +139,7 @@ class Gui(tk.CTk):
         self.school_start_label = school_start_label
 
         school_end_val = tk.StringVar()
-        school_end_val.set("5")
+        school_end_val.set("17")
         school_end = tk.CTkEntry(self, width=150, textvariable=school_end_val)
         school_end.grid(row=10, column=1)
         self.school_end = school_end
@@ -156,7 +156,7 @@ class Gui(tk.CTk):
 
         
         total_students_val = tk.StringVar()
-        total_students_val.set("5")
+        total_students_val.set("2132")
         self.total_students = tk.CTkEntry(self, width=150, textvariable=total_students_val)
         self.total_students.grid(row=8, column=0)
         self.total_students = self.total_students
@@ -167,7 +167,7 @@ class Gui(tk.CTk):
 
 
         dorm_students_val = tk.StringVar()
-        dorm_students_val.set("5")
+        dorm_students_val.set(str(int(4 * 4 * 3 * 3.5)))
         self.dorm_students = tk.CTkEntry(self, width=150, textvariable=dorm_students_val)
         self.dorm_students.grid(row=10, column=0)
         self.dorm_students = self.dorm_students
