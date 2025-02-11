@@ -58,9 +58,9 @@ class Student:
 
 
 if __name__ == "__main__":
-    test_student = Student(1)
+    test_student = Student(1 , 5, 17)
 
-    test_student.genarate_schedule()
+    test_student.generate_schedule(5,17)
 
     print(test_student.schedule)
 
