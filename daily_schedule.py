@@ -20,4 +20,4 @@ class daily_schedule:
 
         :return: String representation of the arrival and departure times.
         """
-        return f'{self.arival_time} {self.departure_time}'
+        return f'{self.arival_time}, {self.departure_time}'
