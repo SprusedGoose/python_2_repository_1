@@ -1,5 +1,7 @@
 # Carson Werner
 # Circular Linked List For Students
+# Note from carmine: some debuging done with assistance from copilot by me. namely the next_slide method
+
 
 class SlideNode:
     """"Slide Node class that stores slide_id and next slide"""
