@@ -33,8 +33,6 @@ def analyze_slide_viewing(list_of_students, slide_count):
 
     """
 
-
-
     # Initializes a dictionary to track how many students saw each slide (1 to 20)
     slide_view_count = {i: 0 for i in range(1, 21)}
 
@@ -67,6 +65,7 @@ def analyze_slide_viewing(list_of_students, slide_count):
     average_unique_slides = total_unique_slides / total_students if total_students > 0 else 0
     percentage_of_slides = round((average_unique_slides / slide_count)*100)
 
+    # used for testing purposes
     # for slide, count in slide_view_count.items():
     #     print(f"Slide {slide} was seen by {count} students.")
 
@@ -74,13 +73,19 @@ def analyze_slide_viewing(list_of_students, slide_count):
 
 
 def output_data(student_list, slide_count):
+    """
+    this function creates a tkinter window to output the data from a randomly generated student list and prints the data to the window
+    """
+
+    # creates a window
     window = tk.Tk()
 
+    # creates a label with the information and packs it to the tkinter window
     output_label = Label(window, text=analyze_slide_viewing(student_list, slide_count))
     output_label.pack()
 
+    # runs the tkinter window
     window.mainloop()
-    
 
 
 if __name__ == "__main__":
