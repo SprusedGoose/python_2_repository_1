@@ -5,6 +5,8 @@ class Main():
     def __init__(self, settings):
         self.settings = settings
 
+        
+
     # def get_settings(self):
     #     global settings
 
@@ -25,7 +27,7 @@ class Main():
 
         sim.simulate_sign_viewing()
         sym_output = sim.get_output()
-        output = analyze_slide_viewing(sym_output, 20)
+        output = analyze_slide_viewing(sym_output, self.settings['slide_count'])
         
         return output
         
