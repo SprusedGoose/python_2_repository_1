@@ -1,38 +1,42 @@
+# Comments made with the assistance of GitHub Copilot
 
 import Simulation_file as simulator
 from data_analysis import analyze_slide_viewing
+
 class Main():
+    """
+    Main class to run the simulation and analyze the output.
+    """
     def __init__(self, settings):
+        """
+        Initialize the Main class with settings.
+
+        :param settings: Dictionary containing simulation settings.
+        """
         self.settings = settings
 
-    # def get_settings(self):
-    #     global settings
-
-    #     # if __name__ == "__main__":
-    #     # # creates a window
-    #     #     window = Gui()
-    #     #     window.after(0, window.update, 0)
-    #     #     # runs the gui window in a loop
-    #     #     window.mainloop()
-
-    #     while button_values is None:  # Wait until button_values is set
-    #         pass
-    #     settings = button_values  # Retrieve settings from GUI
-    #     print(settings)
-
     def run(self):
+        """
+        Run the simulation and analyze the output.
+
+        :return: Analyzed output of the simulation.
+        """
+        # Initialize the simulation with the provided settings
         sim = simulator.simulation(**self.settings)
 
+        # Run the simulation
         sim.simulate_sign_viewing()
+
+        # Get the simulation output
         sym_output = sim.get_output()
-        output = analyze_slide_viewing(sym_output, 20)
+
+        # Analyze the simulation output
+        output = analyze_slide_viewing(sym_output, self.settings['slide_count'])
         
         return output
-        
 
-
-
-# Initialize settings with None before passing it to Main
+# Initialize settings (to be defined)
 settings = None
+
+# Create an instance of Main with the settings
 main = Main(settings)
-# gui.after(0, gui.update, 0)
