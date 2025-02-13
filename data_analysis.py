@@ -19,7 +19,13 @@ def generate_slides(slide_count, slide_duration, slide_events):
 
 # creates a class student
 class student:
+    """
+    this creates a class student for testing purposes, not used in the final program
+    """
     def __init__(self, view_events):
+        """
+        initializes the class and assigns placeholders for lists and a set function to store unique slides
+        """
         self.view_events = view_events
         # Uses a set to track unique slides seen by the student, discarding any duplicates
         self.slides_seen = set()
@@ -88,6 +94,7 @@ def output_data(student_list, slide_count):
     window.mainloop()
 
 
+# if this is the main program it runs this test section
 if __name__ == "__main__":
     students = []
     slide_count = 20
@@ -97,4 +104,5 @@ if __name__ == "__main__":
     # tells the program to Analyze how many students saw each slide and calculate the average number of slides seen by a student
     # analyze_slide_viewing(students)
 
+    # runs the data analysis and prints to a gui
     output_data(students, slide_count)

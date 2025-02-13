@@ -16,8 +16,14 @@ from utilities import path
 
 # creates a class called Gui that creates a graphical user interface
 class Gui(tk.CTk):
+    """
+    This class handles creating a user interface application that takes inputs through sliders checkboxes and entry boxes
+    """
     # creates an init method
     def __init__(self):
+        """
+        this initializes the class and sets the inputs and labels
+        """
         super().__init__()
         # creates a fixed size for the gui
         self.resizable(width=False, height=False)
@@ -52,6 +58,7 @@ class Gui(tk.CTk):
         self.speeding_drivers_checkbox = speeding_drivers_checkbox
 
         # creates a base value of 5 for the entry box
+        # (Carmine didn't end up needing it in the end but I didn't realized until later. I left it in for symetry)
         speed_val = tk.StringVar()
         speed_val.set("5")
         # creates an entry box to enter the speed variation with the initial value above
@@ -262,7 +269,7 @@ class Gui(tk.CTk):
             speed_excess = False
             return speed_excess
 
-    # a method that does nothing
+    # a method that does nothing, we didn't end up needing it
     def functions(self):
         """
         this function does absolutely nothing, we didn't get around to it and it might be unnescessary
@@ -279,16 +286,18 @@ class Gui(tk.CTk):
 
         """
 
-        # takes the user input speed_variation and turns it red and prints an error if it fails, otherwise it runs and turns it white/dark depending on the mode
-        try:
-            speed_variation = float(self.speed_variation.get())
-            self.speed_variation.configure(fg_color=('white', '#2F2F2F'))
-        except Exception as ex:
-            self.speed_variation.configure(fg_color='red')
-            print('error, enter a number value')
-            print(ex)
+        # takes the user input speed_variation and turns it red and prints an error if it fails,
+        # otherwise it runs and turns it white/dark depending on the mode (wasn't used in the end)
+        # try:
+        #     speed_variation = float(self.speed_variation.get())
+        #     self.speed_variation.configure(fg_color=('white', '#2F2F2F'))
+        # except Exception as ex:
+        #     self.speed_variation.configure(fg_color='red')
+        #     print('error, enter a number value')
+        #     print(ex)
 
-        # takes the user input speed_variation and turns it red and prints an error if it fails, otherwise it runs and turns it white/dark depending on the mode
+        # takes the user input speed_variation and turns it red and prints an error if it fails,
+        # otherwise it runs and turns it white/dark depending on the mode
         try:
             viewing_duration = float(self.viewing_duration.get())
             self.viewing_duration.configure(fg_color=('white', '#2F2F2F'))
@@ -297,7 +306,8 @@ class Gui(tk.CTk):
             print('error, enter a number value')
             print(ex)
 
-        # takes the user input speed_variation and turns it red and prints an error if it fails, otherwise it runs and turns it white/dark depending on the mode
+        # takes the user input speed_variation and turns it red and prints an error if it fails,
+        # otherwise it runs and turns it white/dark depending on the mode
         try:
             school_start = float(self.school_start.get())
             self.school_start.configure(fg_color=('white', '#2F2F2F'))
@@ -306,7 +316,8 @@ class Gui(tk.CTk):
             print('error, enter a number value')
             print(ex)
 
-        # takes the user input speed_variation and turns it red and prints an error if it fails, otherwise it runs and turns it white/dark depending on the mode
+        # takes the user input speed_variation and turns it red and prints an error if it fails,
+        # otherwise it runs and turns it white/dark depending on the mode
         try:
             school_end = float(self.school_end.get())
             self.school_end.configure(fg_color=('white', '#2F2F2F'))
@@ -315,7 +326,8 @@ class Gui(tk.CTk):
             print('error, enter a number value')
             print(ex)
 
-        # takes the user input speed_variation and turns it red and prints an error if it fails, otherwise it runs and turns it white/dark depending on the mode
+        # takes the user input speed_variation and turns it red and prints an error if it fails,
+        # otherwise it runs and turns it white/dark depending on the mode
         try:
             total_students = int(self.total_students.get())
             self.total_students.configure(fg_color=('white', '#2F2F2F'))
@@ -324,7 +336,8 @@ class Gui(tk.CTk):
             print('error, enter a number value')
             print(ex)
 
-        # takes the user input speed_variation and turns it red and prints an error if it fails, otherwise it runs and turns it white/dark depending on the mode
+        # takes the user input speed_variation and turns it red and prints an error if it fails,
+        # otherwise it runs and turns it white/dark depending on the mode
         try:
             dorm_students = int(self.dorm_students.get())
             self.dorm_students.configure(fg_color=('white', '#2F2F2F'))
@@ -333,7 +346,7 @@ class Gui(tk.CTk):
             print('error, enter a number value')
             print(ex)
 
-        # gathers the values from the gui
+        # gathers the values from the gui in the form of a dictionary
         self.values = {
                 "speed_bump_quantity": self.speed_bump_slider.get(),
                 "speed_bump_height": self.speed_bump_height.get(),
